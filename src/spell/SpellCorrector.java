@@ -3,6 +3,14 @@ package spell;
 import java.io.IOException;
 
 public class SpellCorrector implements ISpellCorrector {
+
+    private final Trie dictionary;
+
+    public SpellCorrector() {
+        dictionary = new Trie();
+    }
+
+
     /**
      * Tells this <code>SpellCorrector</code> to use the given file as its dictionary
      * for generating suggestions.
@@ -12,9 +20,10 @@ public class SpellCorrector implements ISpellCorrector {
      * @pre SpellCorrector will have had empty-param constructor called, but dictionary has nothing in it.
      * @post SpellCorrector will have dictionary filled and be ready to suggestSimilarWord any number of times.
      */
+
     @Override
     public void useDictionary(String dictionaryFileName) throws IOException {
-
+        // TODO implement useDictionary()
     }
 
     /**
@@ -26,6 +35,7 @@ public class SpellCorrector implements ISpellCorrector {
      */
     @Override
     public String suggestSimilarWord(String inputWord) {
+        // TODO implement suggestSimilarWord()
         return null;
     }
 }

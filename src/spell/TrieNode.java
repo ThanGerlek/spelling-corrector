@@ -1,6 +1,18 @@
 package spell;
 
 public class TrieNode implements INode {
+
+    private int count;
+    private TrieNode[] children;
+
+    public TrieNode() {
+        count = 0;
+    }
+
+    public TrieNode(int count) {
+        this.count = count;
+    }
+
     /**
      * Returns the frequency count for the word represented by the node.
      *
@@ -8,7 +20,7 @@ public class TrieNode implements INode {
      */
     @Override
     public int getValue() {
-        return 0;
+        return count;
     }
 
     /**
@@ -16,7 +28,7 @@ public class TrieNode implements INode {
      */
     @Override
     public void incrementValue() {
-
+        count++;
     }
 
     /**

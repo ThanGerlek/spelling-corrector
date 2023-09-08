@@ -1,9 +1,16 @@
 package spell;
 
-import spell.INode;
-import spell.ITrie;
-
 public class Trie implements ITrie {
+
+    private final TrieNode root;
+    private int wordCount, nodeCount;
+
+    public Trie() {
+        root = new TrieNode();
+        wordCount = 0;
+        nodeCount = 1;
+    }
+
     /**
      * Adds the specified word to the trie (if necessary) and increments the word's
      * frequency count.
@@ -34,7 +41,7 @@ public class Trie implements ITrie {
      */
     @Override
     public int getWordCount() {
-        return 0;
+        return wordCount;
     }
 
     /**
@@ -44,6 +51,6 @@ public class Trie implements ITrie {
      */
     @Override
     public int getNodeCount() {
-        return 0;
+        return nodeCount;
     }
 }
