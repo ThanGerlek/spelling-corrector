@@ -19,7 +19,27 @@ public class Trie implements ITrie {
      */
     @Override
     public void add(String word) {
+        // TODO implement add()
+        TrieNode node = find(word);
+        if (node != null) {
+            node.incrementValue();
+            return;
+        }
+        addNewWord(word);
+    }
 
+    private void addNewWord(String word) {
+        TrieNode node = root;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (node.getChild(c) == null) {
+                node.addChild(c);
+                nodeCount++;
+            }
+            node = node.getChild(c);
+        }
+        node.incrementValue();
+        wordCount++;
     }
 
     /**
@@ -30,8 +50,18 @@ public class Trie implements ITrie {
      * or null if the word is not in the trie
      */
     @Override
-    public INode find(String word) {
-        return null;
+    public TrieNode find(String word) {
+        // TODO implement find()
+        TrieNode node = root;
+        for (int i = 0; i < word.length(); i++) {
+            if (node == null) {
+                return null;
+            } else {
+                char c = word.charAt(i);
+                node = node.getChild(c);
+            }
+        }
+        return node;
     }
 
     /**
