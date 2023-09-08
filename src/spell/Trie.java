@@ -19,7 +19,6 @@ public class Trie implements ITrie {
      */
     @Override
     public void add(String word) {
-        // TODO implement add()
         TrieNode node = find(word);
         if (node != null) {
             node.incrementValue();
@@ -51,7 +50,6 @@ public class Trie implements ITrie {
      */
     @Override
     public TrieNode find(String word) {
-        // TODO implement find()
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
             if (node == null) {
@@ -82,5 +80,20 @@ public class Trie implements ITrie {
     @Override
     public int getNodeCount() {
         return nodeCount;
+    }
+
+    public int hashcode() {
+        // TODO Implement hashcode()
+        return 0;
+    }
+
+    public boolean equals() {
+        // TODO Implement equals()
+        return false;
+    }
+
+    public String toString() {
+        // TODO Implement toString()
+        return null;
     }
 }
