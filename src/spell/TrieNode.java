@@ -37,7 +37,40 @@ public class TrieNode implements INode {
      * @return the child nodes.
      */
     @Override
-    public INode[] getChildren() {
-        return new INode[0];
+    public TrieNode[] getChildren() {
+        if (children == null) {
+            children = new TrieNode[26];
+        }
+        return children;
+    }
+
+    /**
+     * Returns the child node of this node for the given char, or null if it doesn't exist.
+     *
+     * @return the child node.
+     */
+    public TrieNode getChild(char c) {
+        int index = c - 'a';
+
+        if (children == null || children[index] == null) {
+            return null;
+        }
+        return children[index];
+    }
+
+
+    /**
+     * Creates the child node of this node for the given char if it doesn't already exist.
+     *
+     * @param c the char specifying which child to add.
+     */
+    public void addChild(char c) {
+        int index = c - 'a';
+        if (children == null) {
+            children = new TrieNode[26];
+        }
+        if (children[index] == null) {
+            children[index] = new TrieNode();
+        }
     }
 }
