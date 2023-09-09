@@ -39,3 +39,17 @@ public class SpellCorrector implements ISpellCorrector {
         return null;
     }
 }
+
+    /**
+     * Return a transformed version of this word containing only lowercase letters.
+     *
+     * @param inputWord the word to transform
+     * @return the transformed word, containing only the chars a-z
+     */
+    private String cleanInputWord(String inputWord) {
+        inputWord = inputWord.trim();
+        inputWord = inputWord.replaceAll("[^a-zA-Z]+", "");
+        return inputWord.toLowerCase();
+    }
+}
+
