@@ -38,7 +38,6 @@ public class SpellCorrector implements ISpellCorrector {
         // TODO implement suggestSimilarWord()
         return null;
     }
-}
 
     /**
      * Return a transformed version of this word containing only lowercase letters.

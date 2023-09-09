@@ -9,10 +9,6 @@ public class TrieNode implements INode {
         count = 0;
     }
 
-    public TrieNode(int count) {
-        this.count = count;
-    }
-
     /**
      * Returns the frequency count for the word represented by the node.
      *
