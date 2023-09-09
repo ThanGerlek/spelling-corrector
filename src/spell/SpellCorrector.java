@@ -23,7 +23,6 @@ public class SpellCorrector implements ISpellCorrector {
 
     @Override
     public void useDictionary(String dictionaryFileName) throws IOException {
-        // TODO implement useDictionary()
     }
 
     /**
@@ -35,7 +34,6 @@ public class SpellCorrector implements ISpellCorrector {
      */
     @Override
     public String suggestSimilarWord(String inputWord) {
-        // TODO implement suggestSimilarWord()
         return null;
     }
 

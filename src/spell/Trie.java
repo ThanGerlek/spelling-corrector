@@ -83,17 +83,14 @@ public class Trie implements ITrie {
     }
 
     public int hashcode() {
-        // TODO Implement hashcode()
         return 0;
     }
 
     public boolean equals() {
-        // TODO Implement equals()
         return false;
     }
 
     public String toString() {
-        // TODO Implement toString()
         return null;
     }
 }
