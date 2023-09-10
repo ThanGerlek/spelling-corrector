@@ -1,14 +1,17 @@
 package spell;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 class SpellCorrectorTest {
 
     private SpellCorrector spell;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         spell = new SpellCorrector();
     }
 
@@ -274,4 +277,71 @@ class SpellCorrectorTest {
         String str = spell.suggestSimilarWord("hzeklol");
         Assertions.assertEquals("hello", str);
     }
+
+
+    // Test input cleaning
+
+    @Test
+    public void cleanWithCapitalLetters() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("hElLo");
+        Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithPunctuationAndCapitalLetters() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("h!El?Lo");
+        Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithFirstCharacterPunctuation() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("!hello");
+        Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithMiddleCharPunctuation() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("hel?lo");
+        Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithLastCharPunctuation() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("hello.");
+        Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithAdjacentPunctuationMarks() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("hel()lo");
+        Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithManyPunctuationMarks() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("-h!e?l.l,o;");
+        Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithDoubleQuotationMarks() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("he\"ll\"o");
+        Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithSingleQuotationMarks() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("he'll'o");
+        Assertions.assertEquals("hello", str);
+    }
+
 }
