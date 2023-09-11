@@ -46,12 +46,17 @@ public class TrieNode implements INode {
      * @return the child node.
      */
     public TrieNode getChild(char c) {
-        int index = c - 'a';
-
-        if (children == null || children[index] == null) {
+        if (hasChild(c)) {
+            int index = c - 'a';
+            return children[index];
+        } else {
             return null;
         }
-        return children[index];
+    }
+
+    public boolean hasChild(char c) {
+        int index = c - 'a';
+        return children != null && children[index] != null;
     }
 
 

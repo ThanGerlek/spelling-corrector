@@ -127,7 +127,7 @@ class TrieTest {
         trie.add("popped");
         trie.add("pop");
         trie.add("pop");
-        assertCountValues(8, 4);
+        assertCountValues(8, 3);
     }
 
     @Test
@@ -136,7 +136,7 @@ class TrieTest {
         trie.add("pops");
         trie.add("popped");
         trie.add("pop");
-        assertCountValues(8, 4);
+        assertCountValues(8, 3);
     }
 
     @Test
@@ -199,7 +199,7 @@ class TrieTest {
         trie.add("pops");
         trie.add("popped");
         TrieNode node = trie.find("pop");
-        Assertions.assertNotNull(node);
+        Assertions.assertNull(node);
     }
 
     @Test
@@ -218,6 +218,7 @@ class TrieTest {
 
     @Test
     void findWordWithChild() {
+        trie.add("to");
         trie.add("top");
         TrieNode node = trie.find("to");
         Assertions.assertNotNull(node);
@@ -225,6 +226,7 @@ class TrieTest {
 
     @Test
     void findWordWithChildren() {
+        trie.add("to");
         trie.add("top");
         trie.add("tot");
         TrieNode node = trie.find("to");

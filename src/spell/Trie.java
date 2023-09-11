@@ -19,12 +19,15 @@ public class Trie implements ITrie, Dictionary {
      */
     @Override
     public void add(String word) {
+        if (word == "") return;
         TrieNode node = find(word);
-        if (node != null) {
-            node.incrementValue();
-            return;
+        if (node == null) {
+            node = createNewNodeForWord(word);
         }
-        addNewWord(word);
+        if (node.getValue() == 0) {
+            wordCount++;
+        }
+        node.incrementValue();
     }
 
     /**
@@ -43,7 +46,7 @@ public class Trie implements ITrie, Dictionary {
         return node.getValue();
     }
 
-    private void addNewWord(String word) {
+    private TrieNode createNewNodeForWord(String word) {
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
@@ -53,8 +56,7 @@ public class Trie implements ITrie, Dictionary {
             }
             node = node.getChild(c);
         }
-        node.incrementValue();
-        wordCount++;
+        return node;
     }
 
     /**
@@ -66,17 +68,20 @@ public class Trie implements ITrie, Dictionary {
      */
     @Override
     public TrieNode find(String word) {
-        TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            if (node == null) {
-                return null;
-            } else {
-                char c = word.charAt(i);
-                node = node.getChild(c);
-            }
+        if (word == "") {
+            return null;
         }
-        return node;
+        TrieNode node = root;
+        for (int nextCharIndex = 0; nextCharIndex < word.length(); nextCharIndex++) {
+            char nextChar = word.charAt(nextCharIndex);
+            if (!node.hasChild(nextChar)) {
+                return null;
+            }
+            node = node.getChild(nextChar);
+        }
+        return (node.getValue() == 0) ? null : node;
     }
+
 
     /**
      * Returns the number of unique words in the trie.
