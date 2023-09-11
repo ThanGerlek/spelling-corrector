@@ -43,26 +43,39 @@ class EditDistanceSetGeneratorTest {
     }
 
     @Test
-    void testGenerate() throws IOException {
+    void testGenerateForHey() throws IOException {
         String rootWord = "hey";
-        Set<String> expected = editSetForHey();
+        String filePathStr = "./test/resources/hey-edit-set.txt";
+        Set<String> expected = getEditSetFromFile(filePathStr);
 
-        EditDistanceSetGenerator generator = new EditDistanceSetGenerator();
+        EditDistanceSetGenerator generator = getTestGenerator();
         Set<String> actual = generator.generate(rootWord);
 
         Assertions.assertEquals(expected, actual);
     }
 
-    Set<String> editSetForHey() throws IOException {
+    @Test
+    void testGenerateForSingleChar() throws IOException {
+        String rootWord = "a";
+        String filePathStr = "./test/resources/single-char-edit-set.txt";
+        Set<String> expected = getEditSetFromFile(filePathStr);
+
+        EditDistanceSetGenerator generator = getTestGenerator();
+        Set<String> actual = generator.generate(rootWord);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    Set<String> getEditSetFromFile(String filePathStr) throws IOException {
         Set<String> set = new HashSet<>();
-        Path path = Path.of("./test/resources/hey-edit-set.txt");
+        Path path = Path.of(filePathStr);
         try (Scanner scanner = new Scanner(path)) {
             while (scanner.hasNext()) {
                 set.add(scanner.next());
             }
             return set;
         } catch (IOException e) {
-            Assertions.fail("Failed to open hey-edit-set.txt");
+            Assertions.fail("Failed to open edit set file: " + filePathStr);
             throw e;
         }
     }
