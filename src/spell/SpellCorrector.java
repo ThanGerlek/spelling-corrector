@@ -1,6 +1,10 @@
 package spell;
 
+import spell.editdistance.EditDistanceSetGenerator;
+
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SpellCorrector implements ISpellCorrector {
 
@@ -56,5 +60,22 @@ public class SpellCorrector implements ISpellCorrector {
         inputWord = inputWord.replaceAll("[^a-zA-Z]+", "");
         return inputWord.toLowerCase();
     }
+
+    private Set<String> generateEditSetFromString(String inputWord) {
+        EditDistanceSetGenerator generator = new EditDistanceSetGenerator();
+        return generator.generate(inputWord);
+    }
+
+    private Set<String> generateEditSetFromSet(Set<String> inputSet) {
+        EditDistanceSetGenerator generator = new EditDistanceSetGenerator();
+        Set<String> outputSet = new HashSet<>();
+
+        for (String word : inputSet) {
+            Set<String> partialEditSet = generator.generate(word);
+            outputSet.addAll(partialEditSet);
+        }
+        return outputSet;
+    }
+
 }
 
