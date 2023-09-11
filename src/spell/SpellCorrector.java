@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class SpellCorrector implements ISpellCorrector {
 
-    private final Trie dictionary;
+    private Dictionary dictionary;
 
     public SpellCorrector() {
         dictionary = new Trie();
@@ -20,9 +20,12 @@ public class SpellCorrector implements ISpellCorrector {
      * @pre SpellCorrector will have had empty-param constructor called, but dictionary has nothing in it.
      * @post SpellCorrector will have dictionary filled and be ready to suggestSimilarWord any number of times.
      */
-
     @Override
     public void useDictionary(String dictionaryFileName) throws IOException {
+    }
+
+    public void useDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
     }
 
     /**

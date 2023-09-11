@@ -1,6 +1,6 @@
 package spell;
 
-public class Trie implements ITrie {
+public class Trie implements ITrie, Dictionary {
 
     private final TrieNode root;
     private int wordCount, nodeCount;
@@ -25,6 +25,22 @@ public class Trie implements ITrie {
             return;
         }
         addNewWord(word);
+    }
+
+    /**
+     * Searches the dictionary for the specified word and returns the number
+     * of times that word appears in the dictionary.
+     *
+     * @param word the word being searched for.
+     * @return the word's frequency count
+     */
+    @Override
+    public int getFrequencyCount(String word) {
+        TrieNode node = find(word);
+        if (node == null) {
+            return 0;
+        }
+        return node.getValue();
     }
 
     private void addNewWord(String word) {
