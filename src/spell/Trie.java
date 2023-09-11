@@ -11,6 +11,11 @@ public class Trie implements ITrie, Dictionary {
         nodeCount = 1;
     }
 
+    // TODO Clean code:
+    // TODO remove/bypass using null
+    // TODO exception handling
+    // TODO replace "using nulls to pass information" with SPECIAL CASE PATTERN objects
+
     /**
      * Adds the specified word to the trie (if necessary) and increments the word's
      * frequency count.
@@ -104,14 +109,17 @@ public class Trie implements ITrie, Dictionary {
     }
 
     public int hashcode() {
+        // TODO Implement hashcode()
         return 0;
     }
 
     public boolean equals() {
+        // TODO Implement equals()
         return false;
     }
 
     public String toString() {
+        // TODO Implement toString()
         return null;
     }
 }

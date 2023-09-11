@@ -8,6 +8,10 @@ class TrieTest {
 
     private Trie trie;
 
+    // TODO? AssertEquals over AssertNotNull?
+//        TrieNode expected = trie.root.children[0];
+//        Assertions.assertEquals(node, expected);
+
     void assertCountValues(int expectedNodeCount, int expectedWordCount) {
         Assertions.assertEquals(expectedNodeCount, trie.getNodeCount());
         Assertions.assertEquals(expectedWordCount, trie.getWordCount());
@@ -261,13 +265,16 @@ class TrieTest {
 
     @Test
     void testHashcode() {
+        //TODO hashcode() tests
     }
 
     @Test
     void testEquals() {
+        //TODO equals() tests
     }
 
     @Test
     void testToString() {
+        //TODO toString() tests
     }
 }
