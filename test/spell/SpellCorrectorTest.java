@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 class SpellCorrectorTest {
 
     private SpellCorrector spell;
@@ -16,11 +14,8 @@ class SpellCorrectorTest {
     }
 
     private void loadTestDictionary() {
-        try {
-            spell.useDictionary("test-dict.txt");
-        } catch (IOException e) {
-            Assertions.fail("Failed to load test dictionary");
-        }
+        Dictionary testDict = new HashMapDictionary();
+        testDict.add("hello");
     }
 
 
@@ -342,6 +337,13 @@ class SpellCorrectorTest {
         loadTestDictionary();
         String str = spell.suggestSimilarWord("he'll'o");
         Assertions.assertEquals("hello", str);
+    }
+
+    @Test
+    public void cleanWithOnlyPunctuation() {
+        loadTestDictionary();
+        String str = spell.suggestSimilarWord("!?.");
+        Assertions.assertNull(str);
     }
 
 }
