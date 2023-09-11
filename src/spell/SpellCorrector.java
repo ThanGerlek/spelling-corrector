@@ -45,7 +45,25 @@ public class SpellCorrector implements ISpellCorrector {
      */
     @Override
     public String suggestSimilarWord(String inputWord) {
-        // TODO implement suggestSimilarWord()
+        inputWord = cleanInputWord(inputWord);
+        if (dictionary.containsWord(inputWord)) {
+            return inputWord;
+        }
+
+        MostFrequentWordFinder corrector = new MostFrequentWordFinder(dictionary);
+
+        Set<String> editDist1Set = generateEditSetFromString(inputWord);
+        corrector.findInSet(editDist1Set);
+        if (corrector.foundWord()) {
+            return corrector.getWord();
+        }
+
+        Set<String> editDist2Set = generateEditSetFromSet(editDist1Set);
+        corrector.findInSet(editDist2Set);
+        if (corrector.foundWord()) {
+            return corrector.getWord();
+        }
+
         return null;
     }
 
