@@ -9,11 +9,7 @@ public class EditDistanceSetGenerator {
     public Set<String> generate(String rootWord) {
         Set<String> editSet = new HashSet<String>();
 
-        ArrayList<EditGenerator> generators = new ArrayList<>();
-        generators.add(new AdditionEditGenerator());
-        generators.add(new DeletionEditGenerator());
-        generators.add(new ReplacementEditGenerator());
-        generators.add(new TranspositionEditGenerator());
+        ArrayList<EditGenerator> generators = getGenerators();
 
         for (EditGenerator generator : generators) {
             Set<String> partialEditSet = generator.generate(rootWord);
@@ -21,5 +17,14 @@ public class EditDistanceSetGenerator {
         }
 
         return editSet;
+    }
+
+    ArrayList<EditGenerator> getGenerators() {
+        ArrayList<EditGenerator> generators = new ArrayList<>();
+        generators.add(new AdditionEditGenerator());
+        generators.add(new DeletionEditGenerator());
+        generators.add(new ReplacementEditGenerator());
+        generators.add(new TranspositionEditGenerator());
+        return generators;
     }
 }
