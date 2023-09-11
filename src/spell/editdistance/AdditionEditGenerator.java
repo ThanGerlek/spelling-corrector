@@ -1,5 +1,6 @@
 package spell.editdistance;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class AdditionEditGenerator extends EditGenerator {
@@ -19,8 +20,18 @@ public class AdditionEditGenerator extends EditGenerator {
      */
     @Override
     public Set<String> generate(String rootWord) {
-        // TODO implement generate()
-        return null;
+        Set<String> editSet = new HashSet<>();
+
+        for (int indexToInsert = 0; indexToInsert <= rootWord.length(); indexToInsert++) {
+            String prefix = rootWord.substring(0, indexToInsert);
+            String suffix = rootWord.substring(indexToInsert);
+            for (Character c : charSet) {
+                String editedWord = prefix + c.toString() + suffix;
+                editSet.add(editedWord);
+            }
+        }
+
+        return editSet;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package spell.editdistance;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class TranspositionEditGenerator extends EditGenerator {
@@ -18,8 +19,22 @@ public class TranspositionEditGenerator extends EditGenerator {
      */
     @Override
     public Set<String> generate(String rootWord) {
-        // TODO implement generate()
-        return null;
+        Set<String> editSet = new HashSet<>();
+
+        if (rootWord.length() < 2) {
+            return editSet;
+        }
+
+        for (int leftIndexToSwap = 0; leftIndexToSwap < rootWord.length() - 1; leftIndexToSwap++) {
+            String prefix = rootWord.substring(0, leftIndexToSwap);
+            String suffix = rootWord.substring(leftIndexToSwap + 2);
+            Character leftChar = rootWord.charAt(leftIndexToSwap);
+            Character rightChar = rootWord.charAt(leftIndexToSwap + 1);
+            String editedWord = prefix + rightChar.toString() + leftChar.toString() + suffix;
+            editSet.add(editedWord);
+        }
+
+        return editSet;
     }
 
     /**

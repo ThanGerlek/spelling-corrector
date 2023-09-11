@@ -1,5 +1,6 @@
 package spell.editdistance;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class DeletionEditGenerator extends EditGenerator {
@@ -16,8 +17,20 @@ public class DeletionEditGenerator extends EditGenerator {
      */
     @Override
     public Set<String> generate(String rootWord) {
-        // TODO implement generate()
-        return null;
+        Set<String> editSet = new HashSet<>();
+
+        if (rootWord.length() < 2) {
+            return editSet;
+        }
+
+        for (int indexToDelete = 0; indexToDelete < rootWord.length(); indexToDelete++) {
+            String prefix = rootWord.substring(0, indexToDelete);
+            String suffix = rootWord.substring(indexToDelete + 1);
+            String editedWord = prefix + suffix;
+            editSet.add(editedWord);
+        }
+
+        return editSet;
     }
 
     /**
