@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class EditDistanceSetGenerator implements EditGenerator {
+public class EditDistanceSetGenerator {
 
-    @Override
     public Set<String> generate(String rootWord) {
         Set<String> editSet = new HashSet<String>();
 

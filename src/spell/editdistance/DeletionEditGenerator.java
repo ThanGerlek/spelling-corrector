@@ -2,7 +2,7 @@ package spell.editdistance;
 
 import java.util.Set;
 
-public class DeletionEditGenerator implements EditGenerator {
+public class DeletionEditGenerator extends EditGenerator {
 
     /**
      * Generate a Set of versions of the root word with a single character missing.
@@ -18,5 +18,12 @@ public class DeletionEditGenerator implements EditGenerator {
     public Set<String> generate(String rootWord) {
         // TODO implement generate()
         return null;
+    }
+
+    /**
+     * Does nothing for DeletionEditGenerator.
+     */
+    @Override
+    public void useCharSet(Set<Character> charSet) {
     }
 }

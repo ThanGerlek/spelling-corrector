@@ -2,7 +2,7 @@ package spell.editdistance;
 
 import java.util.Set;
 
-public class TranspositionEditGenerator implements EditGenerator {
+public class TranspositionEditGenerator extends EditGenerator {
 
     /**
      * Generate a Set of versions of the root word with two adjacent characters
@@ -20,5 +20,12 @@ public class TranspositionEditGenerator implements EditGenerator {
     public Set<String> generate(String rootWord) {
         // TODO implement generate()
         return null;
+    }
+
+    /**
+     * Does nothing for TranspositionEditGenerator.
+     */
+    @Override
+    public void useCharSet(Set<Character> charSet) {
     }
 }
