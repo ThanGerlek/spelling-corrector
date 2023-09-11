@@ -10,6 +10,9 @@ public class SpellCorrector implements ISpellCorrector {
         dictionary = new Trie();
     }
 
+    public SpellCorrector(Dictionary dictionary) {
+        this.dictionary = dictionary;
+    }
 
     /**
      * Tells this <code>SpellCorrector</code> to use the given file as its dictionary

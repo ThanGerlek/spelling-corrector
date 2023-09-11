@@ -10,12 +10,16 @@ class SpellCorrectorTest {
 
     @BeforeEach
     public void setUp() {
-        spell = new SpellCorrector();
+        Dictionary dictionary = new HashMapDictionary();
+        spell = new SpellCorrector(dictionary);
     }
 
     private void loadTestDictionary() {
         Dictionary testDict = new HashMapDictionary();
         testDict.add("hello");
+        testDict.add("heliocentric");
+        testDict.add("turtles");
+        spell.useDictionary(testDict);
     }
 
 
