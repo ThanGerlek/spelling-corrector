@@ -25,4 +25,6 @@ public interface Dictionary {
      * @return the number of unique words in the dictionary
      */
     int getWordCount();
+
+    boolean containsWord(String word);
 }

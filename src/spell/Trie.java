@@ -11,11 +11,6 @@ public class Trie implements ITrie, Dictionary {
         nodeCount = 1;
     }
 
-    // TODO Clean code:
-    // TODO remove/bypass using null
-    // TODO exception handling
-    // TODO replace "using nulls to pass information" with SPECIAL CASE PATTERN objects
-
     /**
      * Adds the specified word to the trie (if necessary) and increments the word's
      * frequency count.
@@ -106,6 +101,12 @@ public class Trie implements ITrie, Dictionary {
     @Override
     public int getNodeCount() {
         return nodeCount;
+    }
+
+    @Override
+    public boolean containsWord(String word) {
+        TrieNode node = find(word);
+        return node != null && node.getValue() > 0;
     }
 
     public int hashcode() {

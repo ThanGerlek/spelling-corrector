@@ -56,4 +56,9 @@ public class HashMapDictionary implements Dictionary {
     public boolean equalsHashMap(HashMap<String,Integer> map) {
         return words.equals(map);
     }
+
+    @Override
+    public boolean containsWord(String word) {
+        return words.containsKey(word) && words.get(word) > 0;
+    }
 }
