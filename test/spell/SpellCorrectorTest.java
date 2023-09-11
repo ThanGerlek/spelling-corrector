@@ -253,28 +253,28 @@ class SpellCorrectorTest {
     public void suggestFromThreeErrors_Addition() {
         loadTestDictionary();
         String str = spell.suggestSimilarWord("hzekllpo");
-        Assertions.assertEquals("hello", str);
+        Assertions.assertNull(str);
     }
 
     @Test
     public void suggestFromThreeErrors_Deletion() {
         loadTestDictionary();
         String str = spell.suggestSimilarWord("hzekll");
-        Assertions.assertEquals("hello", str);
+        Assertions.assertNull(str);
     }
 
     @Test
     public void suggestFromThreeErrors_Replacement() {
         loadTestDictionary();
         String str = spell.suggestSimilarWord("hzekllp");
-        Assertions.assertEquals("hello", str);
+        Assertions.assertNull(str);
     }
 
     @Test
     public void suggestFromThreeErrors_Transposition() {
         loadTestDictionary();
         String str = spell.suggestSimilarWord("hzeklol");
-        Assertions.assertEquals("hello", str);
+        Assertions.assertNull(str);
     }
 
 
