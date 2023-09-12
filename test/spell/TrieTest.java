@@ -260,17 +260,189 @@ class TrieTest {
     }
 
     @Test
-    void testHashcode() {
-        //TODO hashcode() tests
+    void hashEmptyTrie() {
+        Trie trie = new Trie();
+        Assertions.assertEquals(0, trie.hashCode());
     }
 
     @Test
-    void testEquals() {
-        //TODO equals() tests
+    void hashTrieWithData1() {
+        Trie trie = new Trie();
+        trie.add("bye");
+        trie.add("hello");
+        trie.add("frogs");
+        trie.add("french");
+        // 2nd index, 18 nodes, 4 words
+        Assertions.assertEquals(2 * 18 * 4, trie.hashCode());
     }
 
     @Test
-    void testToString() {
-        //TODO toString() tests
+    void hashTrieWithData2() {
+        Trie trie = new Trie();
+        trie.add("orange");
+        trie.add("jamba");
+        trie.add("juice");
+        // 10th index, 16 nodes, 3 words
+        Assertions.assertEquals(10 * 16 * 3, trie.hashCode());
+    }
+
+    @Test
+    void equalsEmptyTrie() {
+        Trie trie1 = new Trie();
+        Trie trie2 = new Trie();
+        Assertions.assertEquals(trie1, trie2);
+        Assertions.assertEquals(trie2, trie1);
+    }
+
+    @Test
+    void equalsWithUnrelatedWords() {
+        Trie trie1 = new Trie();
+        trie1.add("bye");
+        trie1.add("hello");
+        trie1.add("frogs");
+
+        Trie trie2 = new Trie();
+        trie2.add("frogs");
+        trie2.add("hello");
+        trie2.add("bye");
+
+        Assertions.assertEquals(trie1, trie2);
+        Assertions.assertEquals(trie2, trie1);
+    }
+
+    @Test
+    void equalsWithBranching() {
+        Trie trie1 = new Trie();
+        trie1.add("frogs");
+        trie1.add("frog");
+        trie1.add("french");
+        trie1.add("frederick");
+
+        Trie trie2 = new Trie();
+        trie2.add("french");
+        trie2.add("frederick");
+        trie2.add("frog");
+        trie2.add("frogs");
+
+        Assertions.assertEquals(trie1, trie2);
+        Assertions.assertEquals(trie2, trie1);
+    }
+
+    @Test
+    void notEqualsWithUnrelatedWords() {
+        Trie trie1 = new Trie();
+        trie1.add("bye");
+        trie1.add("hello");
+        trie1.add("frogs");
+
+        Trie trie2 = new Trie();
+        trie2.add("frogs");
+        trie2.add("hello");
+        trie2.add("fred");
+
+        Assertions.assertNotEquals(trie1, trie2);
+        Assertions.assertNotEquals(trie2, trie1);
+    }
+
+    @Test
+    void notEqualsWithMissingWord() {
+        Trie trie1 = new Trie();
+        trie1.add("bye");
+        trie1.add("hello");
+        trie1.add("frogs");
+
+        Trie trie2 = new Trie();
+        trie2.add("hello");
+        trie2.add("frogs");
+
+        Assertions.assertNotEquals(trie1, trie2);
+        Assertions.assertNotEquals(trie2, trie1);
+    }
+
+    @Test
+    void notEqualsWithBranching() {
+        Trie trie1 = new Trie();
+        trie1.add("frogs");
+        trie1.add("frog");
+        trie1.add("french");
+        trie1.add("frederick");
+
+        Trie trie2 = new Trie();
+        trie2.add("france");
+        trie2.add("frederick");
+        trie2.add("frog");
+        trie2.add("frogs");
+
+        Assertions.assertNotEquals(trie1, trie2);
+        Assertions.assertNotEquals(trie2, trie1);
+    }
+
+    @Test
+    void notEqualsWithDifferentFrequency() {
+        Trie trie1 = new Trie();
+        trie1.add("frogs");
+
+        Trie trie2 = new Trie();
+        trie2.add("frogs");
+        trie2.add("frogs");
+
+        Assertions.assertNotEquals(trie1, trie2);
+        Assertions.assertNotEquals(trie2, trie1);
+    }
+
+    @Test
+    void notEqualsWithEmptyTrie() {
+        Trie trie1 = new Trie();
+        Trie trie2 = new Trie();
+        trie2.add("frogs");
+
+        Assertions.assertNotEquals(trie1, trie2);
+        Assertions.assertNotEquals(trie2, trie1);
+    }
+
+    @Test
+    void toStringEmptyTrie() {
+        Trie trie = new Trie();
+        Assertions.assertEquals("", trie.toString());
+    }
+
+    @Test
+    void toStringOneWord() {
+        Trie trie = new Trie();
+        trie.add("hey");
+        Assertions.assertEquals("hey\n", trie.toString());
+    }
+
+    @Test
+    void toStringSeveralWords() {
+        Trie trie = new Trie();
+        trie.add("hey");
+        trie.add("yo");
+        trie.add("im");
+        trie.add("joe");
+        Assertions.assertEquals("hey\nim\njoe\nyo\n", trie.toString());
+    }
+
+    @Test
+    void toStringDifferentFrequencies() {
+        Trie trie = new Trie();
+        trie.add("hey");
+        trie.add("yo");
+        trie.add("hey");
+        trie.add("hey");
+        trie.add("im");
+        trie.add("joe");
+        trie.add("yo");
+        Assertions.assertEquals("hey\nim\njoe\nyo\n", trie.toString());
+    }
+
+    @Test
+    void toStringWithBranching() {
+        Trie trie = new Trie();
+        trie.add("frogs");
+        trie.add("frog");
+        trie.add("french");
+        trie.add("frederick");
+        Assertions.assertEquals("frederick\nfrench\nfrog\nfrogs\n", trie.toString());
     }
 }
