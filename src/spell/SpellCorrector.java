@@ -29,7 +29,7 @@ public class SpellCorrector implements ISpellCorrector {
      */
     @Override
     public void useDictionary(String dictionaryFileName) throws IOException {
-        // TODO implement useDictionary()
+        DictionaryFillerFromFile.fill(dictionaryFileName, dictionary);
     }
 
     public void useDictionary(Dictionary dictionary) {
