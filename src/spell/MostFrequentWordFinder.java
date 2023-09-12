@@ -64,7 +64,7 @@ public class MostFrequentWordFinder {
         }
         String currentBest = words.get(0);
         for (int i = 1; i < words.size(); i++) {
-            if (words.get(i).compareTo(currentBest) > 0) {
+            if (words.get(i).compareTo(currentBest) < 0) {
                 currentBest = words.get(i);
             }
         }
