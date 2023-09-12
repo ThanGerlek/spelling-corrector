@@ -50,18 +50,18 @@ public class SpellCorrector implements ISpellCorrector {
             return inputWord;
         }
 
-        MostFrequentWordFinder corrector = new MostFrequentWordFinder(dictionary);
+        MostFrequentWordFinder finder = new MostFrequentWordFinder(dictionary);
 
         Set<String> editDist1Set = generateEditSetFromString(inputWord);
-        corrector.findInSet(editDist1Set);
-        if (corrector.foundWord()) {
-            return corrector.getWord();
+        finder.findInSet(editDist1Set);
+        if (finder.foundWord()) {
+            return finder.getWord();
         }
 
         Set<String> editDist2Set = generateEditSetFromSet(editDist1Set);
-        corrector.findInSet(editDist2Set);
-        if (corrector.foundWord()) {
-            return corrector.getWord();
+        finder.findInSet(editDist2Set);
+        if (finder.foundWord()) {
+            return finder.getWord();
         }
 
         return null;
