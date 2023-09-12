@@ -15,7 +15,15 @@ class MostFrequentWordFinderTest {
 
     @Test
     void emptyEditSet() {
-        // TODO
+        Dictionary dict = new HashMapDictionary();
+        dict.add("baaa");
+        dict.add("zaaa");
+        Set<String> editSet = new HashSet<>();
+
+        MostFrequentWordFinder finder = new MostFrequentWordFinder(dict);
+        finder.findInSet(editSet);
+
+        Assertions.assertFalse(finder.foundWord());
     }
 
     @Test
