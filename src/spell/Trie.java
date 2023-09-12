@@ -109,18 +109,34 @@ public class Trie implements ITrie, Dictionary {
         return node != null && node.getValue() > 0;
     }
 
-    public int hashcode() {
-        // TODO Implement hashcode()
-        return 0;
+    @Override
+    public int hashCode() {
+        int firstNonNullChildIndex = 0;
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (root.hasChild(c)) {
+                firstNonNullChildIndex = c - 'a';
+                break;
+            }
+        }
+
+        return (firstNonNullChildIndex + 1) * wordCount * nodeCount;
     }
 
-    public boolean equals() {
-        // TODO Implement equals()
-        return false;
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other.getClass() != Trie.class) return false;
+
+        Trie otherTrie = (Trie) other;
+        if (nodeCount != otherTrie.nodeCount || wordCount != otherTrie.wordCount) {
+            return false;
+        }
+
+        return root.equals(otherTrie.root);
     }
 
+    @Override
     public String toString() {
-        // TODO Implement toString()
-        return null;
+        return root.toString();
     }
 }

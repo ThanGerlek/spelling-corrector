@@ -74,4 +74,38 @@ public class TrieNode implements INode {
             children[index] = new TrieNode();
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other.getClass() != TrieNode.class) return false;
+
+        TrieNode otherNode = (TrieNode) other;
+        if (count != otherNode.count) return false;
+
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (hasChild(c) != otherNode.hasChild(c)) return false;
+            if (hasChild(c) && !otherNode.getChild(c).equals(getChild(c))) return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer wordList = new StringBuffer();
+        appendToWordlist(wordList, "");
+        return wordList.toString();
+    }
+
+    public void appendToWordlist(StringBuffer wordList, String currentWord) {
+        if (count > 0) {
+            wordList.append(currentWord + "\n");
+        }
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (hasChild(c)) {
+                String nextWord = currentWord + (Character) c;
+                getChild(c).appendToWordlist(wordList, nextWord);
+            }
+        }
+    }
 }
